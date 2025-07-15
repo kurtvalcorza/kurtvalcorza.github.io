@@ -8,6 +8,7 @@
 kurtvalcorza/kurtvalcorza is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
+
 # Transcribe Audio with OpenAI Whisper
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/Transcribe_Audio_Whisper.ipynb)
 
@@ -18,6 +19,7 @@ This Colab notebook demonstrates how to transcribe audio files using OpenAI’s 
 
 This notebook provides a step-by-step guide to setting up and accessing H2O Flow within a Google Colab environment. It installs necessary dependencies, initializes the H2O server, and uses localtunnel to create a public URL for the H2O Flow web interface, allowing users to interact with H2O's machine learning capabilities directly from Colab.
 
+<!---
 # Reach me @
 - [LinkedIn](https://www.linkedin.com/in/kgvalc/)
 - [Substack](https://kurtvalcorza.substack.com/)
@@ -28,3 +30,4 @@ This notebook provides a step-by-step guide to setting up and accessing H2O Flow
 - [Threads](https://www.threads.net/@kgvalc)
 - [Twitter](https://twitter.com/kgvalc)
 - [Reddit](https://www.reddit.com/user/KurtValcorza)
+--->

@@ -1,8 +1,7 @@
-# Research Writer: Agent-Assisted Academic Research Workflow
+# Research Writer: Subagent-Based Research Orchestration
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/kurtvalcorza/research-writer)
 
-A modular system for rigorous academic, policy, and R&D research through a structured multi-phase workflow. Features literature discovery, synthesis, argument structuring, and drafting with built-in quality control checkpoints. Includes both CLI and web interface (Next.js, React 19, TypeScript) with visual dashboard and real-time execution monitoring.
-
+Subagent-based orchestration system for automated literature reviews. Transforms research PDFs into publication-ready reviews through 7-phase workflow with isolated contexts, automatic orchestration, quality gates, and resumable execution.
 # Transcribe Audio with OpenAI Whisper
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/Transcribe_Audio_Whisper.ipynb)
 

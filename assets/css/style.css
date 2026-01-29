@@ -54,13 +54,13 @@ body {
     background: var(--nav-bg);
     backdrop-filter: var(--nav-backdrop);
     -webkit-backdrop-filter: var(--nav-backdrop);
-    padding: 10px 24px;
+    padding: 8px 20px;
+    /* Reduced to match social pill */
     border-radius: 999px;
     /* Pill shape */
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    gap: 8px;
-    /* Slightly reduced gap */
+    gap: 10px;
     transition: all 0.2s ease;
 }
 
@@ -70,21 +70,15 @@ body {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-
-
 .nav-logo-text {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    /* Extra bold */
-    font-size: 1.3rem;
-    /* Slightly larger */
+    font-family: var(--font-body);
+    /* Standard font */
+    font-weight: 600;
+    font-size: 0.95rem;
     color: var(--text-main);
-    letter-spacing: -1px;
-    /* Tighter tracking like the reference */
-    background: linear-gradient(to right, #ffffff, #94a3b8);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: normal;
+    background: none;
+    -webkit-text-fill-color: initial;
 }
 
 .nav-socials {

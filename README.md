@@ -1,7 +1,13 @@
+# AI Readiness Assessment Chatbot
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/kurtvalcorza/ai-readiness-assessment)
+
+Self-service chatbot for assessing AI readiness of Philippine government agencies and NGOs.
+
 # Research Writer: Subagent-Based Research Orchestration
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/kurtvalcorza/research-writer)
 
 Subagent-based orchestration system for automated literature reviews. Transforms research PDFs into publication-ready reviews through 7-phase workflow with isolated contexts, automatic orchestration, quality gates, and resumable execution.
+
 # Transcribe Audio with OpenAI Whisper
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/Transcribe_Audio_Whisper.ipynb)
 
@@ -11,6 +17,11 @@ This notebook demonstrates how to transcribe audio files using OpenAI's Whisper 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/speech_to_text_diarization.ipynb)
 
 This notebook demonstrates how to perform audio diarization using OpenAI's `gpt-4o-transcribe-diarize` model. It takes an audio file as input, processes it in chunks, and generates a diarized transcript, identifying different speakers in the audio. Obtain an OpenAI API key from the [OpenAI platform](https://platform.openai.com/).
+
+# VibeVoice-ASR: Unified Speech-to-Text with Speaker Diarization
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/VibeVoice_ASR_Colab.ipynb)
+
+This notebook demonstrates [Microsoft's VibeVoice-ASR](https://huggingface.co/microsoft/VibeVoice-ASR), a 9B parameter model providing unified speech-to-text with speaker diarization and timestamps. Features include 60-minute single-pass processing, consistent speaker tracking, and customizable hotwords for domain-specific accuracy. Requires A100 GPU (Colab Pro) for best results; T4 works with 4-bit quantization.
 
 # H2O Flow in Google Colab
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/H2O_Flow_Google_Colab.ipynb)

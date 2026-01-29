@@ -154,6 +154,41 @@
         </div>
     </footer>
 
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-window">
+            <div class="chat-header">
+                <span><span class="status-dot"></span> AI Readiness Bot</span>
+                <button class="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <iframe src="https://ai-readiness-assessment-eta.vercel.app/"
+                title="AI Readiness Assessment Chatbot"></iframe>
+        </div>
+        <button class="chat-toggle-btn" aria-label="Toggle Chat">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <script>
+        const chatToggle = document.querySelector('.chat-toggle-btn');
+        const chatWindow = document.querySelector('.chat-window');
+        const closeChat = document.querySelector('.close-chat');
+
+        function toggleChat() {
+            chatWindow.classList.toggle('active');
+            const icon = chatToggle.querySelector('i');
+            if (chatWindow.classList.contains('active')) {
+                icon.classList.remove('fa-comment-dots');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-comment-dots');
+            }
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        closeChat.addEventListener('click', toggleChat);
+    </script>
 </body>
 
 </html>

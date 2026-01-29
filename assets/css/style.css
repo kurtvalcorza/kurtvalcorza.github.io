@@ -62,22 +62,19 @@ body {
     gap: 12px;
 }
 
-.nav-brand-text {
+.nav-logo-text {
     font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1rem;
+    font-weight: 800;
+    /* Extra bold */
+    font-size: 1.3rem;
+    /* Slightly larger */
     color: var(--text-main);
-}
-
-.nav-divider {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 0.9rem;
-}
-
-.nav-title-text {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    font-weight: 500;
+    letter-spacing: -1px;
+    /* Tighter tracking like the reference */
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-socials {

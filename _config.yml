@@ -1,5 +1,5 @@
 remote_theme: pages-themes/modernist@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
-title: Kurt Valcorza
-description: Nothing to see here.
+title: Kurt Valcorza | AI Researcher
+description: Portfolio of Kurt Valcorza - AI Researcher & Engineer specializing in Subagent Orchestration, Audio Processing, and Automated Research Systems.

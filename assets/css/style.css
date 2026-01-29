@@ -59,8 +59,18 @@ body {
     /* Pill shape */
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    gap: 12px;
+    gap: 8px;
+    /* Slightly reduced gap */
+    transition: all 0.2s ease;
 }
+
+.nav-pill-left:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+
 
 .nav-logo-text {
     font-family: var(--font-heading);

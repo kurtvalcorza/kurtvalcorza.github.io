@@ -7,6 +7,9 @@
     <title>Kurt Valcorza | Science Communication</title>
     <meta name="description"
         content="Portfolio of Kurt Valcorza - Science Communication specializing in Subagent Orchestration, Audio Processing, and Automated Research Systems.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://kit.fontawesome.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://ka-f.fontawesome.com https://cdnjs.cloudflare.com https://fonts.gstatic.com; frame-src 'self' https://ai-readiness-assessment-eta.vercel.app/; img-src 'self' data:;">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="stylesheet" href="assets/css/style.css?v=1.1">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,23 +19,27 @@
 
     <!-- Floating Navigation -->
     <nav class="floating-nav">
-        <a href="https://github.com/kurtvalcorza" class="nav-pill-left" target="_blank" style="text-decoration: none;">
+        <a href="https://github.com/kurtvalcorza" class="nav-pill-left" target="_blank" rel="noopener noreferrer"
+            style="text-decoration: none;">
             <i class="fab fa-github" style="font-size: 1.4rem; color: #fff; margin-right: 8px;"></i>
             <span class="nav-logo-text"
                 style="background: none; -webkit-text-fill-color: initial; color: #fff;">kurtvalcorza</span>
         </a>
         <div class="nav-socials">
-            <a href="https://www.facebook.com/kgvalc" target="_blank" class="nav-social-link" aria-label="Facebook">
+            <a href="https://www.facebook.com/kgvalc" target="_blank" rel="noopener noreferrer" class="nav-social-link"
+                aria-label="Facebook">
                 <i class="fab fa-facebook"></i>
             </a>
-            <a href="https://twitter.com/kgvalc" target="_blank" class="nav-social-link" aria-label="Twitter">
+            <a href="https://twitter.com/kgvalc" target="_blank" rel="noopener noreferrer" class="nav-social-link"
+                aria-label="Twitter">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a href="https://www.reddit.com/user/KurtValcorza" target="_blank" class="nav-social-link"
-                aria-label="Reddit">
+            <a href="https://www.reddit.com/user/KurtValcorza" target="_blank" rel="noopener noreferrer"
+                class="nav-social-link" aria-label="Reddit">
                 <i class="fab fa-reddit"></i>
             </a>
-            <a href="https://www.youtube.com/@kgvalc" target="_blank" class="nav-social-link" aria-label="YouTube">
+            <a href="https://www.youtube.com/@kgvalc" target="_blank" rel="noopener noreferrer" class="nav-social-link"
+                aria-label="YouTube">
                 <i class="fab fa-youtube"></i>
             </a>
         </div>
@@ -191,38 +198,16 @@
     <!-- Chat Widget -->
     <div class="chat-widget">
         <div class="chat-window">
-            <div class="chat-header">
-                <span><span class="status-dot"></span> AI Readiness Bot</span>
-                <button class="close-chat"><i class="fas fa-times"></i></button>
-            </div>
-            <iframe src="https://ai-readiness-assessment-eta.vercel.app/"
-                title="AI Readiness Assessment Chatbot"></iframe>
+
+            <iframe src="https://ai-readiness-assessment-eta.vercel.app/" title="AI Readiness Assessment Chatbot"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
         </div>
         <button class="chat-toggle-btn" aria-label="Toggle Chat">
             <i class="fas fa-comment-dots"></i>
         </button>
     </div>
 
-    <script>
-        const chatToggle = document.querySelector('.chat-toggle-btn');
-        const chatWindow = document.querySelector('.chat-window');
-        const closeChat = document.querySelector('.close-chat');
-
-        function toggleChat() {
-            chatWindow.classList.toggle('active');
-            const icon = chatToggle.querySelector('i');
-            if (chatWindow.classList.contains('active')) {
-                icon.classList.remove('fa-comment-dots');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-comment-dots');
-            }
-        }
-
-        chatToggle.addEventListener('click', toggleChat);
-        closeChat.addEventListener('click', toggleChat);
-    </script>
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

@@ -321,6 +321,7 @@ footer {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--card-border);
+    position: relative;
 }
 
 .chat-window.active {
@@ -328,48 +329,7 @@ footer {
     opacity: 1;
 }
 
-.chat-header {
-    padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--card-border);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    font-size: 1rem;
-}
 
-.chat-header span {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 10px #22c55e;
-}
-
-.close-chat {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    font-size: 1.1rem;
-    transition: color 0.2s;
-    padding: 4px;
-}
-
-.close-chat:hover {
-    color: #fff;
-}
 
 .chat-window iframe {
     width: 100%;

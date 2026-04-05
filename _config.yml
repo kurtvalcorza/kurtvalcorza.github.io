@@ -2,4 +2,4 @@ remote_theme: pages-themes/modernist@v0.2.0
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 title: Kurt Valcorza | Science Communication
-description: Portfolio of Kurt Valcorza - Translating AI R&D content into strategic communications.
+description: Kurt Valcorza | Science Communication | Translating AI R&D content into strategic communications.

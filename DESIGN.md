@@ -103,8 +103,10 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 
 ## Components
 
-- **Nav**: canvas background, 56px height, hairline bottom rule. Block-pixel
-  wordmark left (`█▌kurtvalcorza`), bracket-style text links right.
+- **Nav**: canvas background, 56px height, hairline bottom rule. Wordmark
+  left — the GitHub mark as an inline monochrome SVG (`currentColor`, the
+  page's only graphic glyph) beside `kurtvalcorza` — and bracket-style text
+  links right, ending with the theme toggle.
 - **Hero**: display-xl headline on canvas with primary/secondary CTA buttons
   below; no imagery, no background band.
 - **Buttons**: primary = ink fill, cream text; secondary = cream fill, ink
@@ -119,8 +121,8 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 - **Footer**: caption-md, mute, hairline top rule, 32px vertical padding.
 - **Chat widget**: toggle is a square 4px-radius ink button labeled `[chat]`
   / `[x]`; window has a hairline-strong border, no glow.
-- **Theme toggle**: same button style, labeled `[dark]` / `[light]`, fixed
-  in the lower-left corner (the chat toggle owns the lower-right).
+- **Theme toggle**: a text button labeled `[dark]` / `[light]`, styled like
+  the nav links, last in the nav's social-link row.
 
 ## Layout
 
@@ -132,7 +134,8 @@ grid: auto-fill columns at 320px minimum. Sections separated by 96px and a
 
 1. Never introduce a sans-serif or serif font.
 2. Never add box-shadows, gradients, background images, or icon fonts
-   (no Font Awesome). Use ASCII/text markers instead.
+   (no Font Awesome). Use ASCII/text markers instead. Sole exception: the
+   GitHub mark in the nav wordmark, an inline monochrome SVG.
 3. Dark surfaces (`--surface-dark`) are for terminal-style mockups only —
    never page chrome.
 4. All borders are 1px hairlines; all interactive radii are 4px.

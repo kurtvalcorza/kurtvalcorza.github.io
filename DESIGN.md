@@ -119,8 +119,8 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 - **Footer**: caption-md, mute, hairline top rule, 32px vertical padding.
 - **Chat widget**: toggle is a square 4px-radius ink button labeled `[chat]`
   / `[x]`; window has a hairline-strong border, no glow.
-- **Theme toggle**: same button style, labeled `[dark]` / `[light]`, sits
-  beside the chat toggle in the fixed lower-right corner.
+- **Theme toggle**: same button style, labeled `[dark]` / `[light]`, fixed
+  in the lower-left corner (the chat toggle owns the lower-right).
 
 ## Layout
 

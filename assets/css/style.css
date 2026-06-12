@@ -310,9 +310,11 @@ footer {
     pointer-events: auto;
 }
 
-.corner-buttons {
-    display: flex;
-    gap: 8px;
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 2000;
 }
 
 .theme-toggle-btn,
@@ -384,8 +386,13 @@ footer {
         align-items: stretch;
     }
 
-    .corner-buttons {
+    .chat-toggle-btn {
         align-self: flex-end;
+    }
+
+    .theme-toggle-btn {
+        bottom: 16px;
+        left: 16px;
     }
 
     .chat-window {

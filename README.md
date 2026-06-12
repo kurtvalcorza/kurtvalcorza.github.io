@@ -54,4 +54,4 @@ update its index marker (`[01]`, `[02]`, …).
 
 ## License
 
-MIT — built with AI assistance.
+MIT — built with AI.

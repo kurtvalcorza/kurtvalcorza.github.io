@@ -38,6 +38,41 @@ mockups only — none are currently on the page.
 Semantic colors (accent/danger/warning/success) may appear only inside
 terminal-style mockups, never in page chrome.
 
+## Dark mode
+
+The source opencode.ai system is light-only; this site adds an inverted dark
+variant. The cream/ink relationship flips — the page becomes the terminal:
+
+| Token | Dark value | Note |
+|---|---|---|
+| `--canvas` | `#201d1d` | Page background (the light theme's ink) |
+| `--ink` | `#fdfcfc` | Text and primary buttons (the light theme's cream) |
+| `--ink-deep` | `#ffffff` | Pressed/hover CTA state |
+| `--surface-soft` | `#2a2626` | Quiet panels |
+| `--surface-card` | `#302c2c` | Snippets, elevated rows |
+| `--text-charcoal` | `#e8e6e6` | Strong secondary text |
+| `--text-body` | `#c9c7c7` | Paragraph text |
+| `--text-mute` | `#9a9898` | Muted labels, tags |
+| `--text-stone` | `#8a8a8e` | Tertiary text |
+| `--text-ash` | `#6e6e73` | Faint text, brackets |
+| `--hairline` | `rgba(253, 252, 252, 0.16)` | Dividers and borders |
+| `--hairline-strong` | `#9a9898` | Emphasized borders |
+
+Behavior:
+
+- **OS preference is automatic and flash-free**, handled in pure CSS via
+  `@media (prefers-color-scheme: dark)` (the CSP forbids inline scripts, so
+  no JS is involved in the default path).
+- **Manual override**: the `[dark]`/`[light]` corner button sets
+  `data-theme` on `<html>` and persists the choice in
+  `localStorage('theme')`. `assets/js/theme.js` (loaded synchronously in
+  `<head>`) re-applies the override before first paint. Choosing the mode
+  that matches the OS preference clears the override.
+- The toggle is labeled with the mode it switches **to**, in bracket style.
+- `color-scheme` is set per theme so form controls and scrollbars follow.
+- All components must use the tokens above — never hard-coded colors — so
+  both themes stay in sync automatically.
+
 ## Typography
 
 Single family: **IBM Plex Mono** (the Berkeley Mono stand-in), weights
@@ -84,6 +119,8 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 - **Footer**: caption-md, mute, hairline top rule, 32px vertical padding.
 - **Chat widget**: toggle is a square 4px-radius ink button labeled `[chat]`
   / `[x]`; window has a hairline-strong border, no glow.
+- **Theme toggle**: same button style, labeled `[dark]` / `[light]`, sits
+  beside the chat toggle in the fixed lower-right corner.
 
 ## Layout
 

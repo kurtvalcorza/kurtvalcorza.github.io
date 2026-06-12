@@ -1,39 +1,57 @@
-# AI Readiness Assessment Chatbot
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/kurtvalcorza/ai-readiness-assessment)
+# kurt.valcorza.com
 
-Self-service chatbot for assessing AI readiness of Philippine government agencies and NGOs.
+Personal site of **Kurt Valcorza** — science communication, translating AI
+R&D into strategic communications.
 
-# Research Writer: Subagent-Based Research Orchestration
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/kurtvalcorza/research-writer)
+**Live:** [kurt.valcorza.com](https://kurt.valcorza.com) · deployed from
+`main` via GitHub Pages (custom domain in `CNAME`)
 
-Subagent-based orchestration system for automated literature reviews. Transforms research PDFs into publication-ready reviews through 7-phase workflow with isolated contexts, automatic orchestration, quality gates, and resumable execution.
+## What's on the site
 
-# Transcribe Audio with OpenAI Whisper
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/Transcribe_Audio_Whisper.ipynb)
+A single-page portfolio of featured projects — AI agent workflows,
+Claude Code skills, and speech/ML notebooks — plus an embedded AI Readiness
+Assessment chatbot. The project list lives directly in `index.html`; see the
+live site or [github.com/kurtvalcorza](https://github.com/kurtvalcorza) for
+the current lineup.
 
-This notebook demonstrates how to transcribe audio files using OpenAI's Whisper model via the whisper Python package. It supports common audio formats (e.g., MP3, WAV) and provides a simple pipeline for uploading, transcribing, and saving transcripts.
+## Design
 
-# Audio Diarization with `gpt-4o-transcribe-diarize`
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/speech_to_text_diarization.ipynb)
+The site follows the [opencode.ai design language](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/opencode.ai/DESIGN.md)
+("a marketing page rendered as a Unix manpage"), adapted in
+[`DESIGN.md`](DESIGN.md):
 
-This notebook demonstrates how to perform audio diarization using OpenAI's `gpt-4o-transcribe-diarize` model. It takes an audio file as input, processes it in chunks, and generates a diarized transcript, identifying different speakers in the audio. Obtain an OpenAI API key from the [OpenAI platform](https://platform.openai.com/).
+- One monospace family (IBM Plex Mono) for every text role
+- Warm cream canvas / near-black ink, 1px hairline rules, 4px radii
+- ASCII bracket markers instead of icons — no icon fonts, shadows, or
+  gradients
+- Dark mode: automatic via `prefers-color-scheme`, with a `[dark]`/`[light]`
+  toggle in the nav persisted to `localStorage`
 
-# H2O Flow in Google Colab
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/H2O_Flow_Google_Colab.ipynb)
+AI agents (or humans) making UI changes should follow `DESIGN.md`.
 
-This notebook provides a step-by-step guide to setting up and accessing H2O Flow within a Google Colab environment. It installs necessary dependencies, initializes the H2O server, and uses localtunnel to create a public URL for the H2O Flow web interface, allowing users to interact with H2O's machine learning capabilities directly from Colab.
+## Structure
 
-# VibeVoice-ASR: Unified Speech-to-Text with Speaker Diarization
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/VibeVoice_ASR_Colab.ipynb)
+```
+index.html            single-page portfolio (project cards live here)
+assets/css/style.css  design tokens + components
+assets/js/theme.js    re-applies a saved theme override before first paint
+assets/js/main.js     chat widget + theme toggle behavior
+DESIGN.md             design system spec
+CNAME                 custom domain
+```
 
-This notebook demonstrates [Microsoft's VibeVoice-ASR](https://huggingface.co/microsoft/VibeVoice-ASR), a 9B parameter model providing unified speech-to-text with speaker diarization and timestamps. Features include 60-minute single-pass processing, consistent speaker tracking, and customizable hotwords for domain-specific accuracy. Requires A100 GPU (Colab Pro) for best results; T4 works with 4-bit quantization.
+## Development
 
-# Qwen3-ASR: High-Performance Automatic Speech Recognition
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/Qwen3_ASR_Colab.ipynb)
+No build step — it's static HTML/CSS/JS:
 
-This notebook implements the [Qwen3-ASR-1.7B](https://huggingface.co/Qwen/Qwen3-ASR-1.7B) model for fast and accurate Automatic Speech Recognition. It features automatic language detection, high-speed inference on T4 GPUs, and supports transcribing audio files directly from Google Drive.
+```sh
+python3 -m http.server 8000
+# open http://localhost:8000
+```
 
-# Qwen3-TTS Demo
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/kurtvalcorza/notebooks/blob/main/Qwen3_TTS.ipynb)
+To add a project, copy a `<article class="card">` block in `index.html` and
+update its index marker (`[01]`, `[02]`, …).
 
-This notebook runs the [Qwen3-TTS](https://huggingface.co/spaces/Qwen/Qwen3-TTS) demo. It supports Voice Design (Instruct to Speech), Voice Cloning, and Custom Voices using the Qwen2.5-based TTS models. It is adapted to run on a free Colab GPU (T4).
+## License
+
+MIT — built with AI assistance.

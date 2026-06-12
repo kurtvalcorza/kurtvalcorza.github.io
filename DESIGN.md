@@ -91,7 +91,7 @@ Consolas, 'Liberation Mono', 'Courier New', monospace`
 | Button MD | 16px / 500 / 2.0 |
 | Caption MD (footer, tags) | 14px / 400 / 2.0 |
 
-Section labels are written manpage-style: `## projects`.
+Section labels, when used, are written manpage-style: `## projects`.
 
 ## Spacing & radius
 

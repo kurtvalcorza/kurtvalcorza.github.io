@@ -1,6 +1,7 @@
 # DESIGN.md — kurt.valcorza.com
 
-Design system for this site, adapted from the opencode.ai design language
+Design system for this site, adapted from the
+[opencode.ai DESIGN.md](https://getdesign.md/opencode.ai/design-md)
 (via [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)).
 AI agents working on this repository should follow these rules for any UI change.
 

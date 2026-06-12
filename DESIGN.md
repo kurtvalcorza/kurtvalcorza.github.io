@@ -9,21 +9,22 @@ AI agents working on this repository should follow these rules for any UI change
 "Marketing page rendered as a Unix manpage." One monospaced font family for
 every role — headlines, body, buttons, footer. Hierarchy comes from size and
 weight only. No photography, no illustrations, no shadows, no gradients, no
-icon fonts. ASCII bracket markers (`[+]`, `[->]`, `[x]`) replace icons. The
-single dark surface is the hero terminal (TUI) mockup; everything else sits on
-a warm cream canvas separated by 1px hairline rules and generous whitespace.
+icon fonts. ASCII bracket markers (`[+]`, `[->]`, `[x]`) replace icons.
+Everything sits on a warm cream canvas separated by 1px hairline rules and
+generous whitespace. Dark surfaces are reserved for terminal-style (TUI)
+mockups only — none are currently on the page.
 
 ## Color palette
 
 | Token | Value | Use |
 |---|---|---|
-| `--ink` | `#201d1d` | Headlines, body emphasis, primary buttons, hero TUI surface |
+| `--ink` | `#201d1d` | Headlines, body emphasis, primary buttons |
 | `--ink-deep` | `#0f0000` | Pressed/active CTA state |
 | `--canvas` | `#fdfcfc` | All page backgrounds (warm cream) |
 | `--surface-soft` | `#f8f7f7` | Inputs, quiet panels |
 | `--surface-card` | `#f1eeee` | Code snippets, disabled states |
-| `--surface-dark` | `#201d1d` | Hero TUI mockup only |
-| `--surface-dark-elevated` | `#302c2c` | Prompt rows inside the dark surface |
+| `--surface-dark` | `#201d1d` | Terminal-style mockups only (currently unused) |
+| `--surface-dark-elevated` | `#302c2c` | Prompt rows inside a dark surface (currently unused) |
 | `--text-charcoal` | `#302c2c` | Strong secondary text |
 | `--text-body` | `#424245` | Paragraph text |
 | `--text-mute` | `#646262` | Muted labels, tags |
@@ -34,8 +35,8 @@ a warm cream canvas separated by 1px hairline rules and generous whitespace.
 | `--hairline` | `rgba(15, 0, 0, 0.12)` | All dividers and borders |
 | `--hairline-strong` | `#646262` | Emphasized borders (focused input) |
 
-Semantic colors (accent/danger/warning/success) appear only inside the
-terminal mockup, never in page chrome.
+Semantic colors (accent/danger/warning/success) may appear only inside
+terminal-style mockups, never in page chrome.
 
 ## Typography
 
@@ -69,9 +70,8 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 
 - **Nav**: canvas background, 56px height, hairline bottom rule. Block-pixel
   wordmark left (`█▌kurtvalcorza`), bracket-style text links right.
-- **Hero TUI mockup**: `--surface-dark`, 64px 32px padding (32px 16px mobile),
-  contains the ASCII block-pixel wordmark and prompt rows on
-  `--surface-dark-elevated` with a blinking `▌` cursor.
+- **Hero**: display-xl headline on canvas with primary/secondary CTA buttons
+  below; no imagery, no background band.
 - **Buttons**: primary = ink fill, cream text; secondary = cream fill, ink
   text, hairline border. 4px radius, ~40px height, 4px 20px padding.
 - **Cards**: canvas background, hairline border, 4px radius, 20px padding,
@@ -96,5 +96,6 @@ grid: auto-fill columns at 320px minimum. Sections separated by 96px and a
 1. Never introduce a sans-serif or serif font.
 2. Never add box-shadows, gradients, background images, or icon fonts
    (no Font Awesome). Use ASCII/text markers instead.
-3. Keep the dark surface exclusive to the hero TUI mockup.
+3. Dark surfaces (`--surface-dark`) are for terminal-style mockups only —
+   never page chrome.
 4. All borders are 1px hairlines; all interactive radii are 4px.

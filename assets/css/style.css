@@ -105,69 +105,15 @@ body {
     text-decoration: underline;
 }
 
-/* --- Hero TUI mockup --- */
+/* --- Hero --- */
 .hero {
-    padding-top: 48px;
+    padding-top: 64px;
 }
 
-.tui {
-    background: var(--surface-dark);
-    border-radius: var(--radius-sm);
-    padding: 64px 32px;
-    color: var(--canvas);
-}
-
-.tui-wordmark {
-    font-family: var(--font-mono);
-    font-size: clamp(8px, 2.8vw, 16px);
-    line-height: 1.5;
-    font-weight: 400;
-    margin-bottom: 32px;
-    overflow-x: auto;
-}
-
-.tui-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    background: var(--surface-dark-elevated);
-    border-radius: var(--radius-sm);
-    padding: 8px 12px;
-    margin-top: 8px;
-}
-
-.tui-prompt {
-    color: var(--accent);
-    font-weight: 700;
-}
-
-.tui-cmd {
-    color: var(--canvas);
-}
-
-.tui-output {
-    color: var(--success);
-    padding: 8px 12px;
-    font-size: 14px;
-    line-height: 2;
-}
-
-.tui-cursor {
-    animation: blink 1.2s steps(1) infinite;
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
-}
-
-/* --- Hero copy --- */
 .display {
     font-size: 38px;
     font-weight: 700;
     line-height: 1.5;
-    margin-top: 48px;
 }
 
 .hero-actions {

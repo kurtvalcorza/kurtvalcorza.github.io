@@ -22,6 +22,43 @@
         Consolas, 'Liberation Mono', 'Courier New', monospace;
     --space-section: 96px;
     --radius-sm: 4px;
+    color-scheme: light;
+}
+
+/* Dark theme — inverted palette (see DESIGN.md). Applied automatically via
+   prefers-color-scheme, or explicitly via data-theme set by theme.js. */
+:root[data-theme="dark"] {
+    --ink: #fdfcfc;
+    --ink-deep: #ffffff;
+    --canvas: #201d1d;
+    --surface-soft: #2a2626;
+    --surface-card: #302c2c;
+    --text-charcoal: #e8e6e6;
+    --text-body: #c9c7c7;
+    --text-mute: #9a9898;
+    --text-stone: #8a8a8e;
+    --text-ash: #6e6e73;
+    --hairline: rgba(253, 252, 252, 0.16);
+    --hairline-strong: #9a9898;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --ink: #fdfcfc;
+        --ink-deep: #ffffff;
+        --canvas: #201d1d;
+        --surface-soft: #2a2626;
+        --surface-card: #302c2c;
+        --text-charcoal: #e8e6e6;
+        --text-body: #c9c7c7;
+        --text-mute: #9a9898;
+        --text-stone: #8a8a8e;
+        --text-ash: #6e6e73;
+        --hairline: rgba(253, 252, 252, 0.16);
+        --hairline-strong: #9a9898;
+        color-scheme: dark;
+    }
 }
 
 * {
@@ -72,10 +109,17 @@ body {
 }
 
 .nav-wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     color: var(--ink);
     font-weight: 700;
     text-decoration: none;
     line-height: 2;
+}
+
+.nav-wordmark svg {
+    flex-shrink: 0;
 }
 
 .nav-wordmark:hover {
@@ -101,6 +145,22 @@ body {
 }
 
 .nav-links a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+}
+
+.theme-toggle-btn {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 2;
+    padding: 4px 2px;
+    background: none;
+    border: none;
+    color: var(--text-mute);
+    cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
     color: var(--ink);
     text-decoration: underline;
 }

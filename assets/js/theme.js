@@ -1,6 +1,6 @@
 // Applies a saved manual theme override before first paint. OS preference
 // is handled in pure CSS (prefers-color-scheme); this only runs for visitors
-// who used the [dark]/[light] toggle. Loaded synchronously from <head>
+// who used the sun/moon theme toggle. Loaded synchronously from <head>
 // because the CSP disallows inline scripts.
 (function () {
     try {

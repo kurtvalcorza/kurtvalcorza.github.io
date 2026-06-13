@@ -23,9 +23,13 @@ function currentTheme() {
     return osDark.matches ? 'dark' : 'light';
 }
 
-// The button is labeled with the mode it switches to
+// The visible sun/moon icon swap is handled in pure CSS (see style.css);
+// here we only keep the accessible label in sync with the mode it switches to.
 function renderThemeToggle() {
-    themeToggle.textContent = currentTheme() === 'dark' ? '[light]' : '[dark]';
+    themeToggle.setAttribute(
+        'aria-label',
+        currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+    );
 }
 
 function toggleTheme() {

@@ -129,40 +129,71 @@ body {
 .nav-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    align-items: center;
+    gap: 2px;
 }
 
-.nav-links a {
-    color: var(--text-mute);
-    text-decoration: none;
-    font-size: 14px;
-    line-height: 2;
-    padding: 4px 2px;
-}
-
-.nav-links a .bracket {
-    color: var(--text-ash);
-}
-
-.nav-links a:hover {
-    color: var(--ink);
-    text-decoration: underline;
-}
-
+/* Social links + theme toggle render as inline monochrome SVG icons
+   (currentColor), matching the GitHub wordmark mark. See DESIGN.md. */
+.nav-links a,
 .theme-toggle-btn {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 2;
-    padding: 4px 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
     background: none;
     border: none;
+    border-radius: var(--radius-sm);
     color: var(--text-mute);
+    text-decoration: none;
     cursor: pointer;
 }
 
+.nav-links a:hover,
 .theme-toggle-btn:hover {
     color: var(--ink);
-    text-decoration: underline;
+}
+
+.nav-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+/* The toggle shows the icon for the mode it switches TO: a moon while
+   light (go dark), a sun while dark (go light). Swapped in pure CSS via
+   the same selectors that drive the color tokens, so it is flash-free
+   and needs no JS to render. */
+.theme-toggle-btn .icon-sun {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .icon-moon {
+        display: none;
+    }
+
+    :root:not([data-theme="light"]) .icon-sun {
+        display: block;
+    }
+}
+
+:root[data-theme="dark"] .icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .icon-sun {
+    display: block;
+}
+
+:root[data-theme="light"] .icon-moon {
+    display: block;
+}
+
+:root[data-theme="light"] .icon-sun {
+    display: none;
 }
 
 /* --- Hero --- */

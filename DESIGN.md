@@ -10,7 +10,10 @@ AI agents working on this repository should follow these rules for any UI change
 "Marketing page rendered as a Unix manpage." One monospaced font family for
 every role — headlines, body, buttons, footer. Hierarchy comes from size and
 weight only. No photography, no illustrations, no shadows, no gradients, no
-icon fonts. ASCII bracket markers (`[+]`, `[->]`, `[x]`) replace icons.
+icon fonts. ASCII bracket markers (`[+]`, `[->]`, `[x]`) stand in for inline
+icons; the only graphics are inline monochrome SVGs in the nav — the GitHub
+wordmark, the social links, and the sun/moon theme toggle — each drawn in
+`currentColor`.
 Everything sits on a warm cream canvas separated by 1px hairline rules and
 generous whitespace. Dark surfaces are reserved for terminal-style (TUI)
 mockups only — none are currently on the page.
@@ -64,12 +67,14 @@ Behavior:
 - **OS preference is automatic and flash-free**, handled in pure CSS via
   `@media (prefers-color-scheme: dark)` (the CSP forbids inline scripts, so
   no JS is involved in the default path).
-- **Manual override**: the `[dark]`/`[light]` corner button sets
+- **Manual override**: the sun/moon corner button sets
   `data-theme` on `<html>` and persists the choice in
   `localStorage('theme')`. `assets/js/theme.js` (loaded synchronously in
   `<head>`) re-applies the override before first paint. Choosing the mode
   that matches the OS preference clears the override.
-- The toggle is labeled with the mode it switches **to**, in bracket style.
+- The toggle shows the icon for the mode it switches **to** — a moon while
+  light, a sun while dark — swapped flash-free in pure CSS (mirroring the
+  token selectors); `assets/js/main.js` only keeps the `aria-label` in sync.
 - `color-scheme` is set per theme so form controls and scrollbars follow.
 - All components must use the tokens above — never hard-coded colors — so
   both themes stay in sync automatically.
@@ -105,9 +110,10 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 ## Components
 
 - **Nav**: canvas background, 56px height, hairline bottom rule. Wordmark
-  left — the GitHub mark as an inline monochrome SVG (`currentColor`, the
-  page's only graphic glyph) beside `kurtvalcorza` — and bracket-style text
-  links right, ending with the theme toggle.
+  left — the GitHub mark as an inline monochrome SVG (`currentColor`) beside
+  `kurtvalcorza` — and a row of inline monochrome SVG social links right,
+  each an 18px `currentColor` glyph centered in a 36px hit area, ending with
+  the sun/moon theme toggle.
 - **Hero**: display-xl headline on canvas with primary/secondary CTA buttons
   below; no imagery, no background band.
 - **Buttons**: primary = ink fill, cream text; secondary = cream fill, ink
@@ -122,8 +128,9 @@ Radius: 0 for sections and nav, **4px for every interactive element**,
 - **Footer**: caption-md, mute, hairline top rule, 32px vertical padding.
 - **Chat widget**: toggle is a square 4px-radius ink button labeled `[chat]`
   / `[x]`; window has a hairline-strong border, no glow.
-- **Theme toggle**: a text button labeled `[dark]` / `[light]`, styled like
-  the nav links, last in the nav's social-link row.
+- **Theme toggle**: an icon button — a moon while light, a sun while dark —
+  styled like the social links, last in the nav's icon row. The swap is
+  pure CSS and flash-free.
 
 ## Layout
 
@@ -135,8 +142,10 @@ grid: auto-fill columns at 320px minimum. Sections separated by 96px and a
 
 1. Never introduce a sans-serif or serif font.
 2. Never add box-shadows, gradients, background images, or icon fonts
-   (no Font Awesome). Use ASCII/text markers instead. Sole exception: the
-   GitHub mark in the nav wordmark, an inline monochrome SVG.
+   (no Font Awesome). Use ASCII/text markers for inline iconography. The
+   only graphics allowed are inline monochrome SVGs in the nav — the GitHub
+   wordmark, the social links, and the sun/moon theme toggle — each using
+   `currentColor` so both themes and their hover states stay in sync.
 3. Dark surfaces (`--surface-dark`) are for terminal-style mockups only —
    never page chrome.
 4. All borders are 1px hairlines; all interactive radii are 4px.

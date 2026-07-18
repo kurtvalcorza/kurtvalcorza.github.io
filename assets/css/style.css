@@ -207,6 +207,14 @@ body {
     line-height: 1.5;
 }
 
+.hero-lede {
+    margin-top: 24px;
+    max-width: 680px;
+    color: var(--text-body);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
@@ -253,10 +261,54 @@ body {
     padding-bottom: var(--space-section);
 }
 
+/* Filter bar — bracketed manpage-style toggles (see DESIGN.md tags). */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    margin-bottom: 24px;
+}
+
+.filter-btn {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 2;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-mute);
+    cursor: pointer;
+}
+
+.filter-btn::before {
+    content: '[';
+    color: var(--text-ash);
+}
+
+.filter-btn::after {
+    content: ']';
+    color: var(--text-ash);
+}
+
+.filter-btn:hover {
+    color: var(--ink);
+}
+
+.filter-btn.is-active {
+    color: var(--ink);
+    font-weight: 700;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 16px;
+}
+
+/* A class selector on .card would otherwise override the [hidden] UA rule. */
+.card[hidden] {
+    display: none;
 }
 
 .card {

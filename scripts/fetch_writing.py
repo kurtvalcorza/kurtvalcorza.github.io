@@ -60,23 +60,45 @@ def fetch(label, url):
     return items
 
 
+def load_existing():
+    try:
+        with open(OUTPUT, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except (OSError, ValueError):
+        return []
+    return data.get("items") or []
+
+
 def main():
-    items = []
+    old_items = load_existing()
+
+    new_items = []
     for label, url in SOURCES:
-        items.extend(fetch(label, url))
+        new_items.extend(fetch(label, url))
 
     # Newest first; entries without a date sort last.
-    items.sort(key=lambda it: it["date"] or "", reverse=True)
-    items = items[:MAX_ITEMS]
+    new_items.sort(key=lambda it: it["date"] or "", reverse=True)
+    new_items = new_items[:MAX_ITEMS]
+
+    # A transient outage (every source empty) must not wipe good data.
+    if not new_items and old_items:
+        print("warn: no items fetched from any source; keeping existing feed", file=sys.stderr)
+        return
+
+    # Only rewrite when the posts actually changed, so the daily run doesn't
+    # produce a no-op commit just because the timestamp moved.
+    if new_items == old_items:
+        print("info: feed unchanged; leaving writing.json as-is")
+        return
 
     payload = {
         "updated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "items": items,
+        "items": new_items,
     }
     with open(OUTPUT, "w", encoding="utf-8") as fh:
         json.dump(payload, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
-    print(f"wrote {len(items)} item(s) to {OUTPUT}")
+    print(f"wrote {len(new_items)} item(s) to {OUTPUT}")
 
 
 if __name__ == "__main__":

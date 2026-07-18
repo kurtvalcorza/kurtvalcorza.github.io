@@ -76,13 +76,24 @@ def main():
 
     new_items = []
     for label, url in SOURCES:
-        new_items.extend(fetch(label, url))
+        fetched = fetch(label, url)
+        if fetched:
+            new_items.extend(fetched)
+            continue
+        # This source returned nothing (outage, or an unparseable response). Keep
+        # its previously-cached posts rather than dropping them, so one feed's bad
+        # run can't blank that source from the list while the other source succeeds.
+        cached = [it for it in old_items if it.get("source") == label]
+        if cached:
+            print(f"warn: {label}: no items this run; reusing {len(cached)} cached item(s)", file=sys.stderr)
+        new_items.extend(cached)
 
     # Newest first; entries without a date sort last.
     new_items.sort(key=lambda it: it["date"] or "", reverse=True)
     new_items = new_items[:MAX_ITEMS]
 
-    # A transient outage (every source empty) must not wipe good data.
+    # A transient outage (every source empty, no cache to fall back on) must not
+    # wipe good data.
     if not new_items and old_items:
         print("warn: no items fetched from any source; keeping existing feed", file=sys.stderr)
         return

@@ -255,6 +255,83 @@ body {
     border-color: var(--hairline-strong);
 }
 
+/* --- Latest writing (baked from the RSS feeds by the update-writing Action) --- */
+.writing {
+    margin-top: 40px;
+}
+
+.writing-heading {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 2;
+    color: var(--text-mute);
+    margin-bottom: 12px;
+}
+
+.writing-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+/* A class selector on .writing-list would otherwise override the [hidden] UA rule. */
+.writing-list[hidden] {
+    display: none;
+}
+
+.writing-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 12px;
+}
+
+.writing-title {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.writing-title:hover {
+    text-decoration: underline;
+}
+
+.writing-title::after {
+    content: ' \2197';
+    color: var(--text-ash);
+}
+
+.writing-meta {
+    color: var(--text-mute);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.writing-links {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--text-mute);
+}
+
+.writing-links a {
+    color: var(--text-mute);
+    text-decoration: none;
+}
+
+.writing-links a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+}
+
+.writing-links a::after {
+    content: ' \2197';
+    color: var(--text-ash);
+}
+
 /* --- Projects --- */
 .projects-section {
     margin-top: 64px;

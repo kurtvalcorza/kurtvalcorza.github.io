@@ -85,3 +85,47 @@ function applyFilter(filter) {
 filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
 });
+
+// --- Latest writing ---
+// Rendered from a same-origin file that the update-writing GitHub Action bakes
+// from the Medium + DOST-ASTI RSS feeds (no cross-origin fetch, CSP stays strict).
+// Titles/links come from external feeds, so build via DOM (textContent) and only
+// accept https links — never innerHTML.
+const writingList = document.querySelector('.writing-list');
+if (writingList) {
+    const formatDate = (iso) => {
+        if (!iso) return '';
+        const d = new Date(iso);
+        return Number.isNaN(d.getTime())
+            ? ''
+            : d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    };
+    fetch('assets/data/writing.json', { cache: 'no-cache' })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+            const items = (data && Array.isArray(data.items) ? data.items : []).filter(
+                (it) => it && it.title && /^https:\/\//i.test(it.link || '')
+            );
+            if (!items.length) return;
+            const frag = document.createDocumentFragment();
+            items.forEach((it) => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.className = 'writing-title';
+                a.href = it.link;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.textContent = it.title;
+                const meta = document.createElement('span');
+                meta.className = 'writing-meta';
+                meta.textContent = [it.source, formatDate(it.date)].filter(Boolean).join(' · ');
+                li.append(a, meta);
+                frag.appendChild(li);
+            });
+            writingList.replaceChildren(frag);
+            writingList.hidden = false;
+        })
+        .catch(() => {
+            /* feed unavailable — the fallback links in .writing-links remain */
+        });
+}

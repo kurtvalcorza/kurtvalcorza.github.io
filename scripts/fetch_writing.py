@@ -66,6 +66,8 @@ def load_existing():
             data = json.load(fh)
     except (OSError, ValueError):
         return []
+    if not isinstance(data, dict):
+        return []
     return data.get("items") or []
 
 

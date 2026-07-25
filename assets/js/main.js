@@ -4,7 +4,7 @@ const chatWindow = document.querySelector('.chat-window');
 function toggleChat() {
     chatWindow.classList.toggle('active');
     const open = chatWindow.classList.contains('active');
-    chatToggle.textContent = open ? '[x]' : '[chat]';
+    chatToggle.textContent = open ? 'Close' : 'Chat';
     chatToggle.setAttribute('aria-expanded', String(open));
 }
 
@@ -58,8 +58,8 @@ osDark.addEventListener('change', renderThemeToggle);
 renderThemeToggle();
 
 // --- Project filter ---
-// Bracketed toggles show one theme at a time so the grid never runs long.
-// Visible cards are renumbered [01], [02], … per view; with JS disabled every
+// Category pills show one theme at a time so the grid never runs long.
+// Visible cards are renumbered 01, 02, … per view; with JS disabled every
 // card stays visible with its static index, so nothing is hidden by default.
 const filterBtns = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.card[data-category]');
@@ -72,7 +72,7 @@ function applyFilter(filter) {
         if (match) {
             visible += 1;
             const index = card.querySelector('.card-index');
-            if (index) index.textContent = '[' + String(visible).padStart(2, '0') + ']';
+            if (index) index.textContent = String(visible).padStart(2, '0');
         }
     });
     filterBtns.forEach((btn) => {

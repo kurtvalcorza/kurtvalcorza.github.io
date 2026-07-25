@@ -1,151 +1,157 @@
 # DESIGN.md — kurt.valcorza.com
 
 Design system for this site, adapted from the
-[opencode.ai DESIGN.md](https://getdesign.md/opencode.ai/design-md)
+[Vercel DESIGN.md](https://getdesign.md/vercel/design-md)
 (via [VoltAgent/awesome-design-md](https://github.com/VoltAgent/awesome-design-md)).
 AI agents working on this repository should follow these rules for any UI change.
 
 ## Design principle
 
-"Marketing page rendered as a Unix manpage." One monospaced font family for
-every role — headlines, body, buttons, footer. Hierarchy comes from size and
-weight only. No photography, no illustrations, no shadows, no gradients, no
-icon fonts. ASCII bracket markers (`[+]`, `[->]`, `[x]`) stand in for inline
-icons; the only graphics are inline monochrome SVGs in the nav — the GitHub
-wordmark, the social links, and the sun/moon theme toggle — each drawn in
-`currentColor`.
-Everything sits on a warm cream canvas separated by 1px hairline rules and
-generous whitespace. Dark surfaces are reserved for terminal-style (TUI)
-mockups only — none are currently on the page.
+"Documentation that happens to be selling something." Geist Sans carries every
+heading, control, and paragraph; Geist Mono is reserved for small uppercase
+section eyebrows. A single near-black ink sits on a near-white canvas, and the
+1px hairline — not shadow, not fill — is what defines every card, input, and
+divider. The page is monochrome in both themes: the only chromatic element
+anywhere is the `--link` accent on hover and focus. Everywhere else, restraint.
+
+There is no decorative system at all — no gradients, no photography, no
+illustrations, no heavy elevation, no icon fonts. The only graphics are inline
+monochrome SVGs in the nav — the GitHub wordmark, the social links, and the
+sun/moon theme toggle — each drawn in `currentColor`.
 
 ## Color palette
 
-| Token | Value | Use |
-|---|---|---|
-| `--ink` | `#201d1d` | Headlines, body emphasis, primary buttons |
-| `--ink-deep` | `#0f0000` | Pressed/active CTA state |
-| `--canvas` | `#fdfcfc` | All page backgrounds (warm cream) |
-| `--surface-soft` | `#f8f7f7` | Inputs, quiet panels |
-| `--surface-card` | `#f1eeee` | Code snippets, disabled states |
-| `--surface-dark` | `#201d1d` | Terminal-style mockups only (currently unused) |
-| `--surface-dark-elevated` | `#302c2c` | Prompt rows inside a dark surface (currently unused) |
-| `--text-charcoal` | `#302c2c` | Strong secondary text |
-| `--text-body` | `#424245` | Paragraph text |
-| `--text-mute` | `#646262` | Muted labels, tags |
-| `--text-stone` | `#6e6e73` | Tertiary text |
-| `--text-ash` | `#9a9898` | Faint text, disabled |
-| `--accent` | `#007aff` | TUI prompt symbol only — never marketing chrome |
-| `--success` | `#30d158` | TUI output only |
-| `--hairline` | `rgba(15, 0, 0, 0.12)` | All dividers and borders |
-| `--hairline-strong` | `#646262` | Emphasized borders (focused input) |
+Light is the reference mode. Dark inverts the ladder (Geist's own dark palette)
+and is applied via `prefers-color-scheme`, or explicitly by `theme.js` writing
+`data-theme` on `<html>`.
 
-Semantic colors (accent/danger/warning/success) may appear only inside
-terminal-style mockups, never in page chrome.
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--ink` | `#171717` | `#ededed` | Headings, high-emphasis text |
+| `--body` | `#4d4d4d` | `#a1a1a1` | Paragraphs, secondary copy |
+| `--mute` | `#8f8f8f` | `#8f8f8f` | Captions, eyebrows, metadata |
+| `--faint` | `#a1a1a1` | `#6e6e6e` | Card indices, arrow glyphs, lowest tier |
+| `--canvas` | `#fafafa` | `#000000` | Page background |
+| `--elevated` | `#ffffff` | `#0a0a0a` | Cards, buttons, inputs |
+| `--surface-soft` | `#f2f2f2` | `#1a1a1a` | Hover wells, quiet panels |
+| `--hairline` | `#ebebeb` | `#2e2e2e` | The 1px border on everything |
+| `--hairline-strong` | `#d4d4d4` | `#454545` | Hover border |
+| `--primary` | `#171717` | `#ededed` | Primary CTA fill |
+| `--on-primary` | `#ffffff` | `#0a0a0a` | Text on primary fill |
+| `--link` | `#0070f3` | `#3b9eff` | Links, hover accent, focus |
 
-## Dark mode
-
-The source opencode.ai system is light-only; this site adds an inverted dark
-variant. The cream/ink relationship flips — the page becomes the terminal:
-
-| Token | Dark value | Note |
-|---|---|---|
-| `--canvas` | `#201d1d` | Page background (the light theme's ink) |
-| `--ink` | `#fdfcfc` | Text and primary buttons (the light theme's cream) |
-| `--ink-deep` | `#ffffff` | Pressed/hover CTA state |
-| `--surface-soft` | `#2a2626` | Quiet panels |
-| `--surface-card` | `#302c2c` | Snippets, elevated rows |
-| `--text-charcoal` | `#e8e6e6` | Strong secondary text |
-| `--text-body` | `#c9c7c7` | Paragraph text |
-| `--text-mute` | `#9a9898` | Muted labels, tags |
-| `--text-stone` | `#8a8a8e` | Tertiary text |
-| `--text-ash` | `#6e6e73` | Faint text, brackets |
-| `--hairline` | `rgba(253, 252, 252, 0.16)` | Dividers and borders |
-| `--hairline-strong` | `#9a9898` | Emphasized borders |
-
-Behavior:
-
-- **OS preference is automatic and flash-free**, handled in pure CSS via
-  `@media (prefers-color-scheme: dark)` (the CSP forbids inline scripts, so
-  no JS is involved in the default path).
-- **Manual override**: the sun/moon corner button sets
-  `data-theme` on `<html>` and persists the choice in
-  `localStorage('theme')`. `assets/js/theme.js` (loaded synchronously in
-  `<head>`) re-applies the override before first paint. Choosing the mode
-  that matches the OS preference clears the override.
-- The toggle shows the icon for the mode it switches **to** — a moon while
-  light, a sun while dark — swapped flash-free in pure CSS (mirroring the
-  token selectors); `assets/js/main.js` only keeps the `aria-label` in sync.
-- `color-scheme` is set per theme so form controls and scrollbars follow.
-- All components must use the tokens above — never hard-coded colors — so
-  both themes stay in sync automatically.
+Step the grey text ladder deliberately: `--ink` → `--body` → `--mute` →
+`--faint`. Never set body copy in pure black.
 
 ## Typography
 
-Single family: **IBM Plex Mono** (the Berkeley Mono stand-in), weights
-400 / 500 / 700.
+Two faces, both Geist, loaded from Google Fonts:
 
-Stack: `'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
-Consolas, 'Liberation Mono', 'Courier New', monospace`
+- **Geist Sans** (`--font-sans`) — all UI and prose. Fallback: Inter, then system sans.
+- **Geist Mono** (`--font-mono`) — uppercase section eyebrows and card indices
+  only (this site has no code blocks). Fallback: `ui-monospace`.
 
-| Role | Size / weight / line-height |
-|---|---|
-| Display XL (hero headline) | 38px / 700 / 1.5 (28px on mobile) |
-| Heading MD (section labels) | 16px / 700 / 1.5 |
-| Body MD | 16px / 400 / 1.5 |
-| Body Strong | 16px / 500 / 1.5 |
-| Button MD | 16px / 500 / 2.0 |
-| Caption MD (footer, tags) | 14px / 400 / 2.0 |
+| Role | Size | Weight | Line height | Tracking |
+|---|---|---|---|---|
+| Hero display (`.display`) | 48px | 600 | 48px | -2.4px |
+| Card heading (`.card h3`) | 20px | 600 | 28px | -0.4px |
+| Eyebrow (`.eyebrow`) | 12px | 500 | 16px | 0, uppercase, mono |
+| Lede (`.hero-lede`) | 16px | 400 | 24px | 0 |
+| Body (default) | 14px | 400 | 20px | 0 |
+| Label / link (`.btn-link`, `.writing-title`) | 14px | 500 | 20px | -0.28px |
+| Meta (`.writing-meta`, `.tag`) | 12px | 400 | 16px | 0 |
+| Button (`.btn`, `.chat-toggle-btn`) | 16px | 500 | 20px | 0 |
 
-Section labels, when used, are written manpage-style: `## projects`.
+Weight is effectively binary: 600 for headings, 500 for buttons and labels, 400
+for everything else. No light weight, no black weight, no italic. Display type
+carries tight negative tracking — do not loosen it. On mobile the hero drops to
+32px / -1.28px.
 
-## Spacing & radius
+## Spacing & layout
 
-8px base unit. Tokens: xxs 1px · xs 4px · sm 8px · md 12px · lg 16px ·
-xl 24px · xxl 32px · **section 96px** (vertical rhythm between major blocks;
-tightens to 64px on mobile).
+4px base unit: 4 · 8 · 12 · 16 · 24 · 32 · 40 · 64 · 96 · 128px, exposed as
+`--s-xxs` through `--s-section`.
 
-Radius: 0 for sections and nav, **4px for every interactive element**,
-9999px reserved for avatar circles only. No other rounding.
+- Container: 1200px max width, 24px gutters.
+- Card interiors: 24px. Section rhythm: 96–128px vertical.
+- Button padding is horizontal-only (`0 14px` for pills); height comes from an
+  explicit `height` plus line-height, never vertical padding.
+- Project grid: `auto-fill, minmax(min(320px, 100%), 1fr)`, 16px gap — collapses
+  to 1-up under 640px. The `min()` keeps the track from overflowing viewports
+  narrower than a card.
+
+Whitespace is structural. Cards are grouped by hairlines and gaps, never by
+background blocks.
+
+## Shapes
+
+The radius language is bimodal — tight squares for functional chrome, full
+pills for CTAs, mid-radius for content.
+
+| Token | Value | Use |
+|---|---|---|
+| `--r-sm` | 6px | Nav icon buttons, theme toggle |
+| `--r-md` | 12px | Project cards, chat window |
+| `--r-lg` | 16px | Larger panels |
+| `--r-pill-category` | 64px | Filter category pills |
+| `--r-pill` | 100px | Marketing CTAs, chat toggle |
+| `--r-full` | 9999px | Tag chips |
+
+Never mix the shapes within one context: CTAs stay pills, nav/app chrome stays
+6px squares.
+
+## Elevation
+
+| Level | Treatment | Use |
+|---|---|---|
+| 0 — Flat | 1px `--hairline`, no shadow | Default cards, nav, dividers |
+| 1 — Whisper | Border + `0 1px 1px rgba(0,0,0,.04)` | Card hover |
+| 2 — Floating | `0 2px 2px` + `0 8px 16px -4px` low-alpha stack | Chat window |
+
+Reach for the hairline before the shadow. Flat is the default.
 
 ## Components
 
-- **Nav**: canvas background, 56px height, hairline bottom rule. Wordmark
-  left — the GitHub mark as an inline monochrome SVG (`currentColor`) beside
-  `kurtvalcorza` — and a row of inline monochrome SVG social links right,
-  each an 18px `currentColor` glyph centered in a 36px hit area, ending with
-  the sun/moon theme toggle.
-- **Hero**: display-xl headline on canvas with primary/secondary CTA buttons
-  below; no imagery, no background band.
-- **Buttons**: primary = ink fill, cream text; secondary = cream fill, ink
-  text, hairline border. 4px radius, ~40px height, 4px 20px padding.
-- **Cards**: canvas background, hairline border, 4px radius, 20px padding,
-  no shadow, no hover lift — hover darkens the border only. Indexed with
-  bracket markers (`[01]`, `[02]`, …).
-- **Tags**: caption-md, mute color, rendered in brackets via CSS
-  (`.tag::before "["` / `::after "]"`).
-- **Links**: ink color, underlined on hover; external links suffixed `↗`,
-  internal actions prefixed `->`.
-- **Footer**: caption-md, mute, hairline top rule, 32px vertical padding.
-- **Chat widget**: toggle is a square 4px-radius ink button labeled `[chat]`
-  / `[x]`; window has a hairline-strong border, no glow.
-- **Theme toggle**: an icon button — a moon while light, a sun while dark —
-  styled like the social links, last in the nav's icon row. The swap is
-  pure CSS and flash-free.
+- **`.site-nav`** — canvas background, bottom hairline, 12px/24px padding. Holds
+  the wordmark left, icon links + theme toggle right.
+- **`.nav-links a` / `.theme-toggle-btn`** — 32px square hit area, 6px radius,
+  `--mute` icon that goes `--ink` on a `--surface-soft` well.
+- **`.btn.btn-primary`** — the black (white in dark) pill CTA, 40px tall,
+  `0 14px` padding, 100px radius.
+- **`.filter-btn`** — category pill, 32px tall, hairline border; active state
+  fills with `--primary`.
+- **`.card`** — elevated surface, 1px hairline, 12px radius, 24px padding.
+  Holds a mono `.card-index` (`01`, `02`, …), a 20px heading, body copy, tag
+  chips, then the repository link.
+- **`.tag`** — pill chip, hairline border, 12px `--mute` text.
+- **`.btn-link` / `.writing-title`** — 14px/500 ink links suffixed with a `↗`
+  glyph via `::after` in `--faint`; hover goes `--link`.
+- **`.chat-toggle-btn`** — primary pill, fixed bottom-right; label toggles
+  between `Chat` and `Close`.
 
-## Layout
+External links always carry the `↗` suffix and `rel="noopener noreferrer"`.
 
-~960px max content column, flush-left, single-column reading flow. Project
-grid: auto-fill columns at 320px minimum. Sections separated by 96px and a
-1px hairline only — no background bands. Touch targets ≥ 40px.
+## Constraints
 
-## Hard rules
+- **Strict CSP.** `default-src 'self'` with no `connect-src`, so no inline
+  scripts and no off-origin fetch. Google Fonts is allow-listed for
+  `style-src`/`font-src` only. The "Latest writing" list reads a same-origin
+  JSON that a scheduled Action bakes from the RSS feeds.
+- **No JS dependency for content.** With scripts disabled every card stays
+  visible with its static index; the filter only ever hides.
+- **Cache-bust on change.** Bump `?v=` on `style.css` and `main.js` whenever
+  either changes — GitHub Pages caches aggressively.
 
-1. Never introduce a sans-serif or serif font.
-2. Never add box-shadows, gradients, background images, or icon fonts
-   (no Font Awesome). Use ASCII/text markers for inline iconography. The
-   only graphics allowed are inline monochrome SVGs in the nav — the GitHub
-   wordmark, the social links, and the sun/moon theme toggle — each using
-   `currentColor` so both themes and their hover states stay in sync.
-3. Dark surfaces (`--surface-dark`) are for terminal-style mockups only —
-   never page chrome.
-4. All borders are 1px hairlines; all interactive radii are 4px.
+## Do
+
+- Let ink and hairline carry the page; keep the canvas near-white (black in dark).
+- Keep both themes monochrome; `--link` on hover/focus is the only color.
+- Label sections with uppercase Geist Mono eyebrows.
+- Define surfaces with a 1px hairline before considering a shadow.
+
+## Don't
+
+- Don't introduce decorative color — no gradients, washes, or tinted surfaces.
+- Don't mix pill and square shapes within one context.
+- Don't pile on shadows or add a decorative layer of any kind.
+- Don't set body copy in pure black, or loosen the display tracking.

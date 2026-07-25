@@ -24,7 +24,7 @@ adapted in [`DESIGN.md`](DESIGN.md):
 - Near-white canvas / near-black ink, 1px hairline rules, tight negative
   tracking on display type
 - Bimodal radii — 6px squares for nav chrome, pills for CTAs, 12px for cards
-- One decorative element: a soft multi-stop mesh gradient behind the hero
+- Monochrome in both themes — no gradients or decorative color
 - Dark mode: automatic via `prefers-color-scheme`, with a sun/moon toggle in
   the nav persisted to `localStorage`
 

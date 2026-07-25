@@ -11,13 +11,13 @@ AI agents working on this repository should follow these rules for any UI change
 heading, control, and paragraph; Geist Mono is reserved for small uppercase
 section eyebrows. A single near-black ink sits on a near-white canvas, and the
 1px hairline — not shadow, not fill — is what defines every card, input, and
-divider. The only color the page allows itself is a soft multi-stop mesh
-gradient confined to the hero. Everywhere else: restraint.
+divider. The page is monochrome in both themes: the only chromatic element
+anywhere is the `--link` accent on hover and focus. Everywhere else, restraint.
 
-There is no second decorative system. No photography, no illustrations, no
-heavy elevation, no icon fonts. The only graphics are inline monochrome SVGs in
-the nav — the GitHub wordmark, the social links, and the sun/moon theme toggle —
-each drawn in `currentColor`.
+There is no decorative system at all — no gradients, no photography, no
+illustrations, no heavy elevation, no icon fonts. The only graphics are inline
+monochrome SVGs in the nav — the GitHub wordmark, the social links, and the
+sun/moon theme toggle — each drawn in `currentColor`.
 
 ## Color palette
 
@@ -42,21 +42,6 @@ and is applied via `prefers-color-scheme`, or explicitly by `theme.js` writing
 
 Step the grey text ladder deliberately: `--ink` → `--body` → `--mute` →
 `--faint`. Never set body copy in pure black.
-
-### Mesh gradient
-
-The legacy Vercel gradient trio survives as the hero's only flourish, blended
-as four soft radial blooms behind the headline:
-
-| Stop | Value |
-|---|---|
-| develop | `0, 124, 240` |
-| preview | `121, 40, 202` |
-| pink | `255, 0, 128` |
-| ship | `249, 203, 40` |
-
-Alpha is `--mesh-alpha` (0.16 light, 0.26 dark). The gradient lives in
-`.hero::before` and must not appear anywhere else on the page.
 
 ## Typography
 
@@ -91,8 +76,9 @@ carries tight negative tracking — do not loosen it. On mobile the hero drops t
 - Card interiors: 24px. Section rhythm: 96–128px vertical.
 - Button padding is horizontal-only (`0 14px` for pills); height comes from an
   explicit `height` plus line-height, never vertical padding.
-- Project grid: `auto-fill, minmax(320px, 1fr)`, 16px gap — collapses to 1-up
-  under 640px.
+- Project grid: `auto-fill, minmax(min(320px, 100%), 1fr)`, 16px gap — collapses
+  to 1-up under 640px. The `min()` keeps the track from overflowing viewports
+  narrower than a card.
 
 Whitespace is structural. Cards are grouped by hairlines and gaps, never by
 background blocks.
@@ -158,14 +144,14 @@ External links always carry the `↗` suffix and `rel="noopener noreferrer"`.
 
 ## Do
 
-- Let ink and hairline carry the page; keep the canvas near-white (near-black in dark).
-- Confine color to the hero mesh gradient and the `--link` accent.
+- Let ink and hairline carry the page; keep the canvas near-white (black in dark).
+- Keep both themes monochrome; `--link` on hover/focus is the only color.
 - Label sections with uppercase Geist Mono eyebrows.
 - Define surfaces with a 1px hairline before considering a shadow.
 
 ## Don't
 
-- Don't fill large surfaces with the accent colors — they live in the gradient.
+- Don't introduce decorative color — no gradients, washes, or tinted surfaces.
 - Don't mix pill and square shapes within one context.
-- Don't pile on shadows, gradients, or a second decorative system.
+- Don't pile on shadows or add a decorative layer of any kind.
 - Don't set body copy in pure black, or loosen the display tracking.

@@ -21,15 +21,8 @@
     --primary: #171717;
     --on-primary: #ffffff;
 
-    /* Accent */
+    /* Accent — the page's only chromatic element, reserved for link hover/focus */
     --link: #0070f3;
-
-    /* Mesh-gradient stops (develop / preview / ship) — hero only */
-    --g-develop: 0, 124, 240;
-    --g-preview: 121, 40, 202;
-    --g-pink: 255, 0, 128;
-    --g-ship: 249, 203, 40;
-    --mesh-alpha: 0.13;
 
     --font-sans: Geist, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',
         Arial, sans-serif;
@@ -75,7 +68,6 @@
     --primary: #ededed;
     --on-primary: #0a0a0a;
     --link: #3b9eff;
-    --mesh-alpha: 0.26;
     color-scheme: dark;
 }
 
@@ -93,7 +85,6 @@
         --primary: #ededed;
         --on-primary: #0a0a0a;
         --link: #3b9eff;
-        --mesh-alpha: 0.26;
         color-scheme: dark;
     }
 }
@@ -246,34 +237,11 @@ body {
 }
 
 /* --- Hero --- */
-/* isolation creates a stacking context so the mesh gradient can sit at z-index -1
-   behind the hero's content without falling behind the page background;
-   overflow-x: clip contains the gradient's side bleed without making this a
-   scroll container, so the bloom above the hero still shows. */
+/* No decorative layer: the page is monochrome in both themes, so the hero is
+   type on canvas and nothing else. */
 .hero {
-    position: relative;
-    isolation: isolate;
-    overflow-x: clip;
     padding-top: var(--s-4xl);
     padding-bottom: var(--s-2xl);
-}
-
-/* The mesh gradient — the system's ONE decorative element, confined to the hero. */
-.hero::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    top: -24px;
-    left: -10%;
-    right: -10%;
-    height: 460px;
-    pointer-events: none;
-    background:
-        radial-gradient(42% 56% at 12% 34%, rgba(var(--g-develop), var(--mesh-alpha)), transparent 72%),
-        radial-gradient(38% 52% at 42% 8%, rgba(var(--g-preview), var(--mesh-alpha)), transparent 72%),
-        radial-gradient(42% 56% at 72% 38%, rgba(var(--g-pink), var(--mesh-alpha)), transparent 72%),
-        radial-gradient(34% 48% at 96% 6%, rgba(var(--g-ship), var(--mesh-alpha)), transparent 72%);
-    filter: blur(24px);
 }
 
 .display {
@@ -613,13 +581,6 @@ footer a:hover {
 @media (max-width: 640px) {
     .hero {
         padding-top: var(--s-3xl);
-    }
-
-    /* Belt-and-braces for engines without overflow-x: clip — drop the side
-       bleed entirely so the narrow viewport can never scroll sideways. */
-    .hero::before {
-        left: 0;
-        right: 0;
     }
 
     .display {

@@ -1,62 +1,99 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap');
 
-/* Design tokens — see DESIGN.md (opencode.ai design language) */
+/* Design tokens — see DESIGN.md (Vercel Geist design language) */
 :root {
-    --ink: #201d1d;
-    --ink-deep: #0f0000;
-    --canvas: #fdfcfc;
-    --surface-soft: #f8f7f7;
-    --surface-card: #f1eeee;
-    --surface-dark: #201d1d;
-    --surface-dark-elevated: #302c2c;
-    --text-charcoal: #302c2c;
-    --text-body: #424245;
-    --text-mute: #646262;
-    --text-stone: #6e6e73;
-    --text-ash: #9a9898;
-    --accent: #007aff;
-    --success: #30d158;
-    --hairline: rgba(15, 0, 0, 0.12);
-    --hairline-strong: #646262;
-    --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+    /* Text ladder: ink -> body -> mute -> faint */
+    --ink: #171717;
+    --body: #4d4d4d;
+    --mute: #8f8f8f;
+    --faint: #a1a1a1;
+
+    /* Surfaces */
+    --canvas: #fafafa;
+    --elevated: #ffffff;
+    --surface-soft: #f2f2f2;
+
+    /* Borders */
+    --hairline: #ebebeb;
+    --hairline-strong: #d4d4d4;
+
+    /* Primary fill — inverts in dark mode, so CTAs stay ink-on-canvas */
+    --primary: #171717;
+    --on-primary: #ffffff;
+
+    /* Accent */
+    --link: #0070f3;
+
+    /* Mesh-gradient stops (develop / preview / ship) — hero only */
+    --g-develop: 0, 124, 240;
+    --g-preview: 121, 40, 202;
+    --g-pink: 255, 0, 128;
+    --g-ship: 249, 203, 40;
+    --mesh-alpha: 0.13;
+
+    --font-sans: Geist, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+        Arial, sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
         Consolas, 'Liberation Mono', 'Courier New', monospace;
-    --space-section: 96px;
-    --radius-sm: 4px;
+
+    /* Radius — bimodal: 6px functional chrome, pills for CTAs, 12-16px cards */
+    --r-sm: 6px;
+    --r-md: 12px;
+    --r-lg: 16px;
+    --r-pill-category: 64px;
+    --r-pill: 100px;
+    --r-full: 9999px;
+
+    /* Spacing — 4px base */
+    --s-xxs: 4px;
+    --s-xs: 8px;
+    --s-sm: 12px;
+    --s-md: 16px;
+    --s-lg: 24px;
+    --s-xl: 32px;
+    --s-2xl: 40px;
+    --s-3xl: 64px;
+    --s-4xl: 96px;
+    --s-section: 128px;
+
     color-scheme: light;
 }
 
-/* Dark theme — inverted palette (see DESIGN.md). Applied automatically via
+/* Dark theme — the Geist system's own dark palette (true-black canvas, near-white
+   ink). The primary fill inverts so CTAs read light-on-dark. Applied via
    prefers-color-scheme, or explicitly via data-theme set by theme.js. */
 :root[data-theme="dark"] {
-    --ink: #fdfcfc;
-    --ink-deep: #ffffff;
-    --canvas: #201d1d;
-    --surface-soft: #2a2626;
-    --surface-card: #302c2c;
-    --text-charcoal: #e8e6e6;
-    --text-body: #c9c7c7;
-    --text-mute: #9a9898;
-    --text-stone: #8a8a8e;
-    --text-ash: #6e6e73;
-    --hairline: rgba(253, 252, 252, 0.16);
-    --hairline-strong: #9a9898;
+    --ink: #ededed;
+    --body: #a1a1a1;
+    --mute: #8f8f8f;
+    --faint: #6e6e6e;
+    --canvas: #000000;
+    --elevated: #0a0a0a;
+    --surface-soft: #1a1a1a;
+    --hairline: #2e2e2e;
+    --hairline-strong: #454545;
+    --primary: #ededed;
+    --on-primary: #0a0a0a;
+    --link: #3b9eff;
+    --mesh-alpha: 0.26;
     color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --ink: #fdfcfc;
-        --ink-deep: #ffffff;
-        --canvas: #201d1d;
-        --surface-soft: #2a2626;
-        --surface-card: #302c2c;
-        --text-charcoal: #e8e6e6;
-        --text-body: #c9c7c7;
-        --text-mute: #9a9898;
-        --text-stone: #8a8a8e;
-        --text-ash: #6e6e73;
-        --hairline: rgba(253, 252, 252, 0.16);
-        --hairline-strong: #9a9898;
+        --ink: #ededed;
+        --body: #a1a1a1;
+        --mute: #8f8f8f;
+        --faint: #6e6e6e;
+        --canvas: #000000;
+        --elevated: #0a0a0a;
+        --surface-soft: #1a1a1a;
+        --hairline: #2e2e2e;
+        --hairline-strong: #454545;
+        --primary: #ededed;
+        --on-primary: #0a0a0a;
+        --link: #3b9eff;
+        --mesh-alpha: 0.26;
         color-scheme: dark;
     }
 }
@@ -70,10 +107,11 @@
 body {
     background-color: var(--canvas);
     color: var(--ink);
-    font-family: var(--font-mono);
-    font-size: 16px;
-    line-height: 1.5;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
 }
 
 .sr-only {
@@ -89,9 +127,19 @@ body {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 var(--s-lg);
+}
+
+/* Uppercase Geist Mono eyebrow — the system's section label. */
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: var(--mute);
 }
 
 /* --- Navigation --- */
@@ -100,22 +148,23 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px 16px;
-    max-width: 960px;
+    gap: var(--s-xs) var(--s-md);
+    max-width: 1200px;
     margin: 0 auto;
     min-height: 56px;
-    padding: 8px 20px;
+    padding: var(--s-sm) var(--s-lg);
     border-bottom: 1px solid var(--hairline);
 }
 
 .nav-wordmark {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--s-xs);
     color: var(--ink);
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.28px;
     text-decoration: none;
-    line-height: 2;
 }
 
 .nav-wordmark svg {
@@ -123,43 +172,43 @@ body {
 }
 
 .nav-wordmark:hover {
-    text-decoration: underline;
+    color: var(--body);
 }
 
 .nav-links {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 2px;
+    gap: var(--s-xxs);
 }
 
-/* Social links + theme toggle render as inline monochrome SVG icons
-   (currentColor), matching the GitHub wordmark mark. See DESIGN.md. */
+/* Nav/app chrome takes the tight 6px square, never the marketing pill. */
 .nav-links a,
 .theme-toggle-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     background: none;
     border: none;
-    border-radius: var(--radius-sm);
-    color: var(--text-mute);
+    border-radius: var(--r-sm);
+    color: var(--mute);
     text-decoration: none;
     cursor: pointer;
 }
 
 .nav-links a:hover,
 .theme-toggle-btn:hover {
+    background: var(--surface-soft);
     color: var(--ink);
 }
 
 .nav-icon {
     display: block;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 /* The toggle shows the icon for the mode it switches TO: a moon while
@@ -197,56 +246,86 @@ body {
 }
 
 /* --- Hero --- */
+/* isolation creates a stacking context so the mesh gradient can sit at z-index -1
+   behind the hero's content without falling behind the page background;
+   overflow-x: clip contains the gradient's side bleed without making this a
+   scroll container, so the bloom above the hero still shows. */
 .hero {
-    padding-top: 64px;
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    padding-top: var(--s-4xl);
+    padding-bottom: var(--s-2xl);
+}
+
+/* The mesh gradient — the system's ONE decorative element, confined to the hero. */
+.hero::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -24px;
+    left: -10%;
+    right: -10%;
+    height: 460px;
+    pointer-events: none;
+    background:
+        radial-gradient(42% 56% at 12% 34%, rgba(var(--g-develop), var(--mesh-alpha)), transparent 72%),
+        radial-gradient(38% 52% at 42% 8%, rgba(var(--g-preview), var(--mesh-alpha)), transparent 72%),
+        radial-gradient(42% 56% at 72% 38%, rgba(var(--g-pink), var(--mesh-alpha)), transparent 72%),
+        radial-gradient(34% 48% at 96% 6%, rgba(var(--g-ship), var(--mesh-alpha)), transparent 72%);
+    filter: blur(24px);
 }
 
 .display {
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 1.5;
+    max-width: 900px;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: -2.4px;
 }
 
 .hero-lede {
-    margin-top: 24px;
+    margin-top: var(--s-lg);
     max-width: 680px;
-    color: var(--text-body);
+    color: var(--body);
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 24px;
 }
 
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
+    gap: var(--s-sm);
+    margin-top: var(--s-lg);
 }
 
+/* Marketing CTAs are pills; height comes from line-height, not vertical padding. */
 .btn {
-    display: inline-block;
-    font-family: var(--font-mono);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 14px;
+    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 500;
-    line-height: 2;
-    padding: 4px 20px;
-    border-radius: var(--radius-sm);
+    line-height: 20px;
+    border-radius: var(--r-pill);
     text-decoration: none;
 }
 
 .btn-primary {
-    background: var(--ink);
-    color: var(--canvas);
-    border: 1px solid var(--ink);
+    background: var(--primary);
+    color: var(--on-primary);
+    border: 1px solid var(--primary);
 }
 
-.btn-primary:hover,
-.btn-primary:active {
-    background: var(--ink-deep);
-    border-color: var(--ink-deep);
+.btn-primary:hover {
+    opacity: 0.85;
 }
 
 .btn-secondary {
-    background: var(--canvas);
+    background: var(--elevated);
     color: var(--ink);
     border: 1px solid var(--hairline);
 }
@@ -257,23 +336,15 @@ body {
 
 /* --- Latest writing (baked from the RSS feeds by the update-writing Action) --- */
 .writing {
-    margin-top: 40px;
-}
-
-.writing-heading {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 2;
-    color: var(--text-mute);
-    margin-bottom: 12px;
+    margin-top: var(--s-2xl);
 }
 
 .writing-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: var(--s-sm);
+    margin: var(--s-md) 0;
 }
 
 /* A class selector on .writing-list would otherwise override the [hidden] UA rule. */
@@ -285,102 +356,96 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 2px 12px;
+    gap: var(--s-xxs) var(--s-sm);
 }
 
 .writing-title {
     color: var(--ink);
     text-decoration: none;
-    font-weight: 500;
     font-size: 14px;
-    line-height: 1.5;
-}
-
-.writing-title:hover {
-    text-decoration: underline;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.28px;
 }
 
 .writing-title::after {
     content: ' \2197';
-    color: var(--text-ash);
+    color: var(--faint);
+}
+
+.writing-title:hover {
+    color: var(--link);
 }
 
 .writing-meta {
-    color: var(--text-mute);
-    font-size: 14px;
-    line-height: 1.5;
+    color: var(--mute);
+    font-size: 12px;
+    line-height: 16px;
 }
 
 .writing-links {
+    margin-top: var(--s-md);
+    color: var(--mute);
     font-size: 14px;
-    line-height: 2;
-    color: var(--text-mute);
+    line-height: 20px;
 }
 
 .writing-links a {
-    color: var(--text-mute);
+    color: var(--body);
     text-decoration: none;
 }
 
 .writing-links a:hover {
     color: var(--ink);
-    text-decoration: underline;
-}
-
-.writing-links a::after {
-    content: ' \2197';
-    color: var(--text-ash);
 }
 
 /* --- Projects --- */
 .projects-section {
-    margin-top: 64px;
-    padding-bottom: var(--space-section);
+    margin-top: var(--s-4xl);
+    padding-bottom: var(--s-section);
 }
 
-/* Filter bar — bracketed manpage-style toggles (see DESIGN.md tags). */
+.projects-heading {
+    margin-bottom: var(--s-md);
+}
+
+/* Filter bar — category pills (64px radius), the system's tab shape. */
 .filter-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 12px;
-    margin-bottom: 24px;
+    gap: var(--s-xs);
+    margin-bottom: var(--s-xl);
 }
 
 .filter-btn {
-    font-family: var(--font-mono);
+    height: 32px;
+    padding: 0 var(--s-md);
+    font-family: var(--font-sans);
     font-size: 14px;
-    font-weight: 400;
-    line-height: 2;
-    padding: 0;
-    background: none;
-    border: none;
-    color: var(--text-mute);
+    font-weight: 500;
+    line-height: 20px;
+    background: var(--elevated);
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill-category);
     cursor: pointer;
 }
 
-.filter-btn::before {
-    content: '[';
-    color: var(--text-ash);
-}
-
-.filter-btn::after {
-    content: ']';
-    color: var(--text-ash);
-}
-
 .filter-btn:hover {
-    color: var(--ink);
+    border-color: var(--hairline-strong);
 }
 
 .filter-btn.is-active {
-    color: var(--ink);
-    font-weight: 700;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--primary);
 }
 
+/* min() keeps the 320px track from overflowing viewports narrower than the card. */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: var(--s-md);
 }
 
 /* A class selector on .card would otherwise override the [hidden] UA rule. */
@@ -389,99 +454,104 @@ body {
 }
 
 .card {
-    background: var(--canvas);
+    background: var(--elevated);
     border: 1px solid var(--hairline);
-    border-radius: var(--radius-sm);
-    padding: 20px;
+    border-radius: var(--r-md);
+    padding: var(--s-lg);
     display: flex;
     flex-direction: column;
 }
 
 .card:hover {
     border-color: var(--hairline-strong);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
 .card-index {
-    color: var(--text-ash);
-    font-size: 14px;
-    line-height: 2;
-    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    color: var(--faint);
+    margin-bottom: var(--s-sm);
 }
 
 .card h3 {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.4px;
+    margin-bottom: var(--s-xs);
 }
 
 .card p {
-    color: var(--text-body);
+    color: var(--body);
     font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 16px;
+    line-height: 20px;
+    margin-bottom: var(--s-md);
     flex-grow: 1;
 }
 
 .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 8px;
-    margin-bottom: 12px;
+    gap: var(--s-xxs) var(--s-xs);
+    margin-bottom: var(--s-md);
 }
 
 .tag {
-    font-size: 14px;
-    line-height: 2;
-    color: var(--text-mute);
-}
-
-.tag::before {
-    content: '[';
-    color: var(--text-ash);
-}
-
-.tag::after {
-    content: ']';
-    color: var(--text-ash);
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    padding: 0 var(--s-xs);
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--mute);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-full);
 }
 
 .btn-link {
     color: var(--ink);
     text-decoration: none;
-    font-weight: 500;
     font-size: 14px;
-    line-height: 2;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: -0.28px;
+}
+
+.btn-link::after {
+    content: ' \2197';
+    color: var(--faint);
 }
 
 .btn-link:hover {
-    text-decoration: underline;
+    color: var(--link);
 }
 
 /* --- Footer --- */
 footer {
     border-top: 1px solid var(--hairline);
-    padding: 32px 0;
-    color: var(--text-mute);
+    padding: var(--s-3xl) 0;
+    color: var(--body);
     font-size: 14px;
-    line-height: 2;
+    line-height: 20px;
 }
 
 footer a {
-    color: var(--text-mute);
+    color: var(--body);
     text-decoration: none;
 }
 
 footer a:hover {
     color: var(--ink);
-    text-decoration: underline;
 }
 
 /* --- Chat Widget --- */
 .chat-widget {
     position: fixed;
-    bottom: 24px;
-    right: 24px;
+    bottom: var(--s-lg);
+    right: var(--s-lg);
     z-index: 2000;
     display: flex;
     flex-direction: column;
@@ -494,35 +564,38 @@ footer a:hover {
 }
 
 .chat-toggle-btn {
-    font-family: var(--font-mono);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    padding: 0 var(--s-md);
+    font-family: var(--font-sans);
     font-size: 16px;
     font-weight: 500;
-    line-height: 2;
-    padding: 4px 12px;
-    min-height: 40px;
-    background: var(--ink);
-    color: var(--canvas);
-    border: 1px solid var(--ink);
-    border-radius: var(--radius-sm);
+    line-height: 20px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border: 1px solid var(--primary);
+    border-radius: var(--r-pill);
     cursor: pointer;
 }
 
-.chat-toggle-btn:hover,
-.chat-toggle-btn:active {
-    background: var(--ink-deep);
-    border-color: var(--ink-deep);
+.chat-toggle-btn:hover {
+    opacity: 0.85;
 }
 
 .chat-window {
     width: 380px;
     height: 600px;
-    background: var(--canvas);
-    border: 1px solid var(--hairline-strong);
-    border-radius: var(--radius-sm);
-    margin-bottom: 12px;
+    background: var(--elevated);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    margin-bottom: var(--s-sm);
     overflow: hidden;
     display: none;
     flex-direction: column;
+    /* Level 2 — floating: a layered, very-low-alpha shadow stack. */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.04), 0 8px 16px -4px rgba(0, 0, 0, 0.08);
 }
 
 .chat-window.active {
@@ -533,29 +606,43 @@ footer a:hover {
     width: 100%;
     height: 100%;
     border: none;
-    background: var(--canvas);
+    background: var(--elevated);
 }
 
 /* --- Responsive --- */
 @media (max-width: 640px) {
-    :root {
-        --space-section: 64px;
+    .hero {
+        padding-top: var(--s-3xl);
+    }
+
+    /* Belt-and-braces for engines without overflow-x: clip — drop the side
+       bleed entirely so the narrow viewport can never scroll sideways. */
+    .hero::before {
+        left: 0;
+        right: 0;
     }
 
     .display {
-        font-size: 28px;
+        font-size: 32px;
+        line-height: 36px;
+        letter-spacing: -1.28px;
     }
 
-    .tui {
-        padding: 32px 16px;
+    .projects-section {
+        margin-top: var(--s-3xl);
+        padding-bottom: var(--s-4xl);
+    }
+
+    .hero-actions .btn {
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .chat-widget {
-        bottom: 16px;
-        right: 16px;
-        left: 16px;
+        bottom: var(--s-md);
+        right: var(--s-md);
+        left: var(--s-md);
         align-items: stretch;
     }
 

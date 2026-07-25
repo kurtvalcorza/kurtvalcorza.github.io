@@ -16,16 +16,17 @@ the current lineup.
 
 ## Design
 
-The site follows the [opencode.ai design language](https://getdesign.md/opencode.ai/design-md)
-("a marketing page rendered as a Unix manpage"), adapted in
-[`DESIGN.md`](DESIGN.md):
+The site follows the [Vercel design language](https://getdesign.md/vercel/design-md)
+(the Geist system — "documentation that happens to be selling something"),
+adapted in [`DESIGN.md`](DESIGN.md):
 
-- One monospace family (IBM Plex Mono) for every text role
-- Warm cream canvas / near-black ink, 1px hairline rules, 4px radii
-- ASCII bracket markers instead of icons — no icon fonts, shadows, or
-  gradients
-- Dark mode: automatic via `prefers-color-scheme`, with a `[dark]`/`[light]`
-  toggle in the nav persisted to `localStorage`
+- Geist Sans for every text role; Geist Mono for uppercase section eyebrows
+- Near-white canvas / near-black ink, 1px hairline rules, tight negative
+  tracking on display type
+- Bimodal radii — 6px squares for nav chrome, pills for CTAs, 12px for cards
+- One decorative element: a soft multi-stop mesh gradient behind the hero
+- Dark mode: automatic via `prefers-color-scheme`, with a sun/moon toggle in
+  the nav persisted to `localStorage`
 
 AI agents (or humans) making UI changes should follow `DESIGN.md`.
 
@@ -49,8 +50,10 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-To add a project, copy a `<article class="card">` block in `index.html` and
-update its index marker (`[01]`, `[02]`, …).
+To add a project, copy a `<article class="card">` block in `index.html`, set
+its `data-category`, and update the static index markers (`01`, `02`, …) so
+they stay contiguous. Bump the `?v=` query on `style.css` / `main.js` whenever
+either changes.
 
 ## License
 

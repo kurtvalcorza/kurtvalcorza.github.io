@@ -373,6 +373,65 @@
 
                 <article class="card" data-category="ml">
                     <div class="card-index">18</div>
+                    <h3>Mitra Classifier Pipeline</h3>
+                    <p>A DIMER pipeline that fine-tunes Mitra — AutoGluon&rsquo;s Apache-2.0 tabular foundation model, pretrained
+                        on 45 million synthetic datasets and no real data — on your own table with a categorical
+                        target. Ships as a CPU dataset validator plus a GPU fine-tuner.</p>
+                    <div class="tags">
+                        <span class="tag">tabular</span>
+                        <span class="tag">foundation-models</span>
+                        <span class="tag">dimer</span>
+                    </div>
+                    <a href="https://github.com/kurtvalcorza/mitra-classifier-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">View repository</a>
+                </article>
+
+                <article class="card" data-category="ml">
+                    <div class="card-index">19</div>
+                    <h3>Mitra Regressor Pipeline</h3>
+                    <p>The same Mitra pipeline for a numeric target — validate the table, fine-tune, and return a saved model
+                        artifact with a holdout score. Falls back to zero-shot in-context learning when no GPU is
+                        available.</p>
+                    <div class="tags">
+                        <span class="tag">tabular</span>
+                        <span class="tag">regression</span>
+                        <span class="tag">dimer</span>
+                    </div>
+                    <a href="https://github.com/kurtvalcorza/mitra-regressor-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">View repository</a>
+                </article>
+
+                <article class="card" data-category="ml">
+                    <div class="card-index">20</div>
+                    <h3>TabICLv2 Classifier Pipeline</h3>
+                    <p>A DIMER pipeline for TabICLv2 (Inria Soda, BSD-3-Clause), an in-context learner that reads labelled rows
+                        as context: a column-wise pass builds a distribution-aware embedding per feature, then a
+                        row-wise pass and an in-context head classify each query row.</p>
+                    <div class="tags">
+                        <span class="tag">tabular</span>
+                        <span class="tag">in-context-learning</span>
+                        <span class="tag">dimer</span>
+                    </div>
+                    <a href="https://github.com/kurtvalcorza/tabicl-classifier-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">View repository</a>
+                </article>
+
+                <article class="card" data-category="ml">
+                    <div class="card-index">21</div>
+                    <h3>TabICLv2 Regressor Pipeline</h3>
+                    <p>The TabICLv2 regressor, fine-tuned through <code>FinetunedTabICLRegressor</code> with a pinball/quantile
+                        loss and validation-based selection, against a pinned Hugging Face checkpoint revision.</p>
+                    <div class="tags">
+                        <span class="tag">tabular</span>
+                        <span class="tag">regression</span>
+                        <span class="tag">dimer</span>
+                    </div>
+                    <a href="https://github.com/kurtvalcorza/tabicl-regressor-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">View repository</a>
+                </article>
+
+                <article class="card" data-category="ml">
+                    <div class="card-index">22</div>
                     <h3>Colab Notebooks</h3>
                     <p>Ready-to-run Google Colab notebooks for speech and ML experiments — transcription, speaker
                         diarization, and text-to-speech with Whisper, GPT-4o, VibeVoice-ASR, and Qwen3-ASR/TTS,
@@ -388,7 +447,7 @@
 
                 <!-- Web apps & tools -->
                 <article class="card" data-category="tools">
-                    <div class="card-index">19</div>
+                    <div class="card-index">23</div>
                     <h3>WSL Crew</h3>
                     <p>A Windows system tray app that keeps WSL2-hosted services alive — surviving idle shutdowns,
                         re-pointing portproxy rules when the distro IP changes on reboot, and turning the commands
@@ -403,7 +462,7 @@
                 </article>
 
                 <article class="card" data-category="tools">
-                    <div class="card-index">20</div>
+                    <div class="card-index">24</div>
                     <h3>PDF Signer PWA</h3>
                     <p>A private, offline-capable PWA for signing PDFs — real PKCS#12 digital signatures with your
                         signature image, in-app Digital ID creation, and counter-signing, all fully client-side so

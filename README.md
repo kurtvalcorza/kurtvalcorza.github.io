@@ -9,7 +9,7 @@ R&D into strategic communications.
 ## What's on the site
 
 A single-page portfolio of featured projects — AI agent workflows,
-Claude Code skills, and speech/ML notebooks — plus an embedded AI Readiness
+Claude Code skills, and DIMER model pipelines — plus an embedded AI Readiness
 Assessment chatbot. The project list lives directly in `index.html`; see the
 live site or [github.com/kurtvalcorza](https://github.com/kurtvalcorza) for
 the current lineup.

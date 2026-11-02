@@ -146,7 +146,7 @@
                 <article class="card" data-category="research">
                     <div class="card-index">03</div>
                     <h3>Agentic Research</h3>
-                    <p>AI-agent pipeline for literature and systematic reviews — 23 composable skills aligned with
+                    <p>AI-agent pipeline for literature and systematic reviews — 24 composable skills aligned with
                         PRISMA 2020, Cochrane, and GRADE. Verifies every citation against the real bibliographic
                         record, with human gates where LLMs are weakest.</p>
                     <div class="tags">
@@ -266,9 +266,25 @@
                         rel="noopener noreferrer">View repository</a>
                 </article>
 
+                <article class="card" data-category="applied-ai">
+                    <div class="card-index">11</div>
+                    <h3>Rice-Pest Detector</h3>
+                    <p>A teaching demo for counting rice black bug and white stemborer in light-trap photos: RT-DETR,
+                        RF-DETR, and D-FINE detectors exported to ONNX and run on CPU, built with AI coding agents.
+                        For research and training only &mdash; not field-validated, and not a basis for pest-management
+                        decisions.</p>
+                    <div class="tags">
+                        <span class="tag">object-detection</span>
+                        <span class="tag">agriculture</span>
+                        <span class="tag">teaching</span>
+                    </div>
+                    <a href="https://github.com/kurtvalcorza/rice-pest-detector" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">View repository</a>
+                </article>
+
                 <!-- ML infrastructure & experiments -->
                 <article class="card" data-category="ml">
-                    <div class="card-index">11</div>
+                    <div class="card-index">12</div>
                     <h3>LiteRT-LM Plugin</h3>
                     <p>An unofficial Claude Code plugin for calling a local, on-device model served by LiteRT-LM —
                         offline, no API tokens, nothing leaving the machine. It also repairs the missing metadata key
@@ -284,7 +300,7 @@
                 </article>
 
                 <article class="card" data-category="ml">
-                    <div class="card-index">12</div>
+                    <div class="card-index">13</div>
                     <h3>MLOps-Lite</h3>
                     <p>A full-lifecycle, single-GPU MLOps platform that runs locally — data, train, register, serve,
                         monitor, retrain — with one race-free GPU tenant, gated promotion, and a closed
@@ -299,13 +315,14 @@
                 </article>
 
                 <article class="card" data-category="ml">
-                    <div class="card-index">13</div>
+                    <div class="card-index">14</div>
                     <h3>DIMER Model Pipelines</h3>
                     <p>Model integrations for the DIMER platform, all built to one contract: a pinned immutable model
                         revision, weights verified by checksum before they load, dataset validation that runs ahead of
                         inference, machine-readable provenance attached to every result, and a model card recording
                         intended use, out-of-scope use, and decision thresholds. Coverage spans tabular, vision, detection,
-                        document AI, vision-language, time series, audio, and language &mdash; the last including
+                        document AI, vision-language, image and video generation, Earth observation, motion and matching,
+                        the life and physical sciences, time series, audio, and language &mdash; the last including
                         question answering, summarization, and English&ndash;Tagalog translation. Each repository states its
                         own release status; most sit at candidate&nbsp;/ source-complete pending recorded clean-runtime evidence.</p>
                     <div class="tags">
@@ -316,15 +333,23 @@
                     <a href="https://github.com/kurtvalcorza/mitra-classifier-pipeline" class="btn-link" target="_blank"
                         rel="noopener noreferrer">Tabular &mdash; Mitra, TabICL, TabPFN, TabDPT</a>
                     <a href="https://github.com/kurtvalcorza/swin-classification-pipeline" class="btn-link" target="_blank"
-                        rel="noopener noreferrer">Vision &mdash; Swin, SAM&nbsp;2, CLIPSeg, DINOv2, ViTPose</a>
+                        rel="noopener noreferrer">Vision &mdash; Swin, SAM&nbsp;2, Mask2Former, DINOv2, ViTPose</a>
                     <a href="https://github.com/kurtvalcorza/grounding-dino-detection-pipeline" class="btn-link" target="_blank"
-                        rel="noopener noreferrer">Detection &mdash; Grounding DINO, OWLv2, RT-DETR, YOLOX</a>
+                        rel="noopener noreferrer">Detection &mdash; Grounding DINO, OWLv2, DETR, CountGD</a>
                     <a href="https://github.com/kurtvalcorza/smoldocling-document-extraction-pipeline" class="btn-link" target="_blank"
                         rel="noopener noreferrer">Document AI &mdash; OCR, document QA, tables, charts</a>
                     <a href="https://github.com/kurtvalcorza/siglip2-vision-language-pipeline" class="btn-link" target="_blank"
                         rel="noopener noreferrer">Vision-language &mdash; SigLIP&nbsp;2, Florence-2, SmolVLM, BLIP</a>
+                    <a href="https://github.com/kurtvalcorza/flux-schnell-generation-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">Generation &mdash; FLUX.1, PixArt-&Sigma;, Kandinsky</a>
+                    <a href="https://github.com/kurtvalcorza/prithvi-flood-segmentation-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">Earth observation &mdash; Prithvi-EO, CFNet, Aurora</a>
+                    <a href="https://github.com/kurtvalcorza/raft-optical-flow-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">Motion &amp; matching &mdash; RAFT, LightGlue, XoFTR</a>
+                    <a href="https://github.com/kurtvalcorza/esm2-protein-pipeline" class="btn-link" target="_blank"
+                        rel="noopener noreferrer">Sciences &mdash; ESM-2, Geneformer, scGPT, MoLFormer, MACE</a>
                     <a href="https://github.com/kurtvalcorza/chronos-2-forecasting-pipeline" class="btn-link" target="_blank"
-                        rel="noopener noreferrer">Time series &mdash; Chronos-2, TiRex, Toto, MOMENT</a>
+                        rel="noopener noreferrer">Time series &mdash; Chronos-2, TiRex, Toto, TimesFM, MOMENT</a>
                     <a href="https://github.com/kurtvalcorza/whisper-asr-pipeline" class="btn-link" target="_blank"
                         rel="noopener noreferrer">Audio &mdash; Whisper, AST, Kokoro</a>
                     <a href="https://github.com/kurtvalcorza/language-model-pipeline" class="btn-link" target="_blank"
@@ -335,7 +360,7 @@
 
                 <!-- Web apps & tools -->
                 <article class="card" data-category="tools">
-                    <div class="card-index">14</div>
+                    <div class="card-index">15</div>
                     <h3>Agent Infrastructure</h3>
                     <p>Four independently usable layers for running AI agents under real constraints.
                         <strong>Relay</strong> hands work between agents through durable artifacts and a verifier gate.
@@ -358,17 +383,18 @@
                 </article>
 
                 <article class="card" data-category="tools">
-                    <div class="card-index">15</div>
-                    <h3>PDF Signer PWA</h3>
-                    <p>A private, offline-capable PWA for signing PDFs — real PKCS#12 digital signatures with your
-                        signature image, in-app Digital ID creation, and counter-signing, all fully client-side so
-                        nothing ever leaves your device.</p>
+                    <div class="card-index">16</div>
+                    <h3>Model Dependabot</h3>
+                    <p>Dependabot-style alerts for AI models. A small manifest becomes a pinned inventory of what a model
+                        depends on &mdash; weight files, locked packages, base model, training data &mdash; checked against
+                        published advisories and weight-file scans, and watched upstream for retractions, licence changes,
+                        and withdrawn base models. It only reads: it never changes, retrains, or unpublishes a model.</p>
                     <div class="tags">
-                        <span class="tag">pwa</span>
-                        <span class="tag">pdf</span>
-                        <span class="tag">privacy</span>
+                        <span class="tag">supply-chain</span>
+                        <span class="tag">mlops</span>
+                        <span class="tag">provenance</span>
                     </div>
-                    <a href="https://github.com/kurtvalcorza/pdf-signer-pwa" class="btn-link" target="_blank"
+                    <a href="https://github.com/kurtvalcorza/model-dependabot" class="btn-link" target="_blank"
                         rel="noopener noreferrer">View repository</a>
                 </article>
 

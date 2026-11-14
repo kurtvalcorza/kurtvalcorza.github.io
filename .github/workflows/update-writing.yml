@@ -21,14 +21,17 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      # Actions are pinned to full commit SHAs (the tag a version points at can be
+      # moved); the trailing comment names the release the SHA belongs to.
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6.3.0
         with:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install feedparser
+        # Exact versions with hashes; see scripts/requirements.txt.
+        run: pip install --require-hashes -r scripts/requirements.txt
 
       - name: Fetch feeds
         run: python scripts/fetch_writing.py
